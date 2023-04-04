@@ -6,7 +6,7 @@
 #    By: kposthum <kposthum@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/06 16:04:34 by kposthum      #+#    #+#                  #
-#    Updated: 2023/04/04 13:33:39 by kposthum      ########   odam.nl          #
+#    Updated: 2023/04/04 14:26:22 by kposthum      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJDIR := ./obj
 OBJS :=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
 
-all: $(NAME)
+all: libft gnl libmlx $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(GNL)
 	@echo Making $(NAME)
@@ -38,13 +38,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 $(OBJDIR):
 	@mkdir -p $@
 
-$(LIBFT):
+libft:
 	@$(MAKE) -C ./libs/libft
 
-$(GNL):
+gnl:
 	@$(MAKE) -C ./libs/get_next_line
 
-$(LIBMLX):
+libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 clean:
